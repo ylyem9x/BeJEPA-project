@@ -1,0 +1,58 @@
+# @package _global_
+rewards:
+  only_positive_rewards: False
+  reward_scales:
+      penalty_torques: -0.000001
+      penalty_undesired_contact: -1
+      penalty_action_rate: -0.5
+      penalty_ankle_roll: -0.5
+      penalty_feet_ori: -0.1
+      feet_heading_alignment: -0.1
+      penalty_slippage: -1.0
+      limits_dof_pos: -10.0
+      limits_dof_vel: -5.0
+      limits_torque: -5.0
+  reward_penalty_curriculum: False
+  reward_initial_penalty_scale : 0.10
+  reward_min_penalty_scale: 0.0
+  reward_max_penalty_scale: 1.0
+  reward_penalty_level_down_threshold: 40
+  reward_penalty_level_up_threshold: 42
+  reward_penalty_degree: 0.000003
+  num_compute_average_epl: 10000
+  reward_limit:
+    soft_dof_pos_limit: 0.95
+    soft_dof_vel_limit: 0.95
+    soft_torque_limit: 0.95
+    reward_limits_curriculum:
+      soft_dof_pos_curriculum: False
+      soft_dof_pos_initial_limit: 1.15
+      soft_dof_pos_max_limit: 1.15
+      soft_dof_pos_min_limit: 0.95
+      soft_dof_pos_curriculum_degree: 0.00000025
+      soft_dof_pos_curriculum_level_down_threshold: 40
+      soft_dof_pos_curriculum_level_up_threshold: 42
+      soft_dof_vel_curriculum: False
+      soft_dof_vel_initial_limit: 1.15
+      soft_dof_vel_max_limit: 1.25
+      soft_dof_vel_min_limit: 0.95
+      soft_dof_vel_curriculum_degree: 0.00000025
+      soft_dof_vel_curriculum_level_down_threshold: 40
+      soft_dof_vel_curriculum_level_up_threshold: 42
+      soft_torque_curriculum: False
+      soft_torque_initial_limit: 1.15
+      soft_torque_max_limit: 1.25
+      soft_torque_min_limit: 0.85
+      soft_torque_curriculum_degree: 0.00000025
+      soft_torque_curriculum_level_down_threshold: 40
+      soft_torque_curriculum_level_up_threshold: 42
+  reward_penalty_reward_names : [
+    "penalty_torques",
+    "penalty_action_rate",
+    "limits_dof_pos",
+    "limits_torque",
+    "penalty_slippage",
+    "penalty_undesired_contact",
+    "penalty_ankle_roll",
+    "penalty_feet_ori"
+    ]

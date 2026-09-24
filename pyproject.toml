@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=68,<81"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bejepa"
+version = "0.1.0"
+description = "Goal-conditioned latent world-model training for the G1 humanoid"
+readme = "README.md"
+requires-python = "==3.10.*"
+dependencies = [
+    "torch==2.5.1",
+    "numpy==1.26.4",
+    "gymnasium==1.1.1",
+    "pydantic==2.11.7",
+    "tensordict==0.8.3",
+    "safetensors==0.5.3",
+    "hydra-core==1.3.2",
+    "omegaconf==2.3.0",
+    "exca==0.4.5",
+    "tyro==0.9.26",
+    "wandb==0.12.21",
+    "protobuf==3.20.3",
+    "setuptools==80.9.0",
+    "joblib==1.5.1",
+    "scipy==1.15.3",
+    "POT==0.9.5",
+    "open3d==0.19.0",
+    "ipywidgets==8.1.7",
+    "lxml==6.0.0",
+    "easydict==1.13",
+    "rich==14.0.0",
+    "termcolor==3.1.0",
+    "mediapy==1.2.4",
+    "imageio==2.37.0",
+    "imageio-ffmpeg==0.6.0",
+    "mujoco==3.3.3",
+    "h5py==3.14.0",
+    "pandas==2.3.1",
+    "humenv==0.2.0",
+    "packaging==25.0",
+    "tqdm==4.67.1",
+    "loguru==0.7.3",
+    "isaaclab[all,isaacsim]==2.0.2; sys_platform == 'linux'",
+    "isaacsim[all,extscache]==4.5.0; sys_platform == 'linux'",
+]
+
+[dependency-groups]
+dev = ["ruff==0.9.6"]
+
+[[tool.uv.index]]
+name = "nvidia"
+url = "https://pypi.nvidia.com/"
+
+[tool.uv.sources]
+humenv = { git = "https://github.com/facebookresearch/humenv.git", rev = "0548761a19b783c6a3548a14a8c4ea1ca35e94af" }
+
+[tool.uv]
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+link-mode = "copy"
+index-strategy = "unsafe-best-match"
+
+[project.scripts]
+bejepa-train = "humanoidverse.train_g1_jepa_successor:main"
+
+[tool.setuptools.packages.find]
+include = ["humanoidverse*"]
+
+[tool.setuptools.package-data]
+humanoidverse = ["config/**/*", "data/robots/**/*", "data/data_manifest.json", "data/packed/*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = ["build", "dist"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+ignore = ["E402", "E731"]
+
+[tool.ruff.lint.per-file-ignores]
+"humanoidverse/utils/torch_utils.py" = ["F811"]

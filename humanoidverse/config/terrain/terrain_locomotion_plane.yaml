@@ -1,0 +1,25 @@
+# @package _global_
+defaults:
+  - terrain_base
+terrain:
+  mesh_type : 'plane'
+  horizontal_scale : 0.1
+  vertical_scale : 0.005
+  border_size : 40
+  curriculum : False
+  static_friction: 1.0
+  dynamic_friction: 1.0
+  restitution: 0.0
+  measure_heights : False
+  measured_points_x : [ 0.]
+  measured_points_y : [ 0.]
+  selected : False
+  terrain_kwargs : null
+  max_init_terrain_level : 9
+  terrain_length : 8.
+  terrain_width : 8.
+  num_rows: 10
+  num_cols : 20
+  terrain_types : ['flat', 'rough', 'low_obst', 'smooth_slope', 'rough_slope']
+  terrain_proportions : [0.2, 0.6, 0.2, 0.0, 0.0]
+  slope_treshold : 0.75

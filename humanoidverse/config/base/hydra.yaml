@@ -1,0 +1,8 @@
+# @package _global_
+hydra:
+  run:
+    dir: ${save_dir}
+  sweep:
+    dir: ${save_dir}
+  job:
+    chdir: False

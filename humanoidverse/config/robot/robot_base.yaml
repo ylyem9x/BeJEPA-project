@@ -1,0 +1,44 @@
+# @package _global_
+robot:
+  dof_obs_size: ???
+  number_of_actions: ???
+  self_obs_max_coords: ???
+  num_bodies: ???
+  algo_obs_dim_dict: ???
+  key_bodies: null
+  contact_bodies: null
+  foot_name: null
+  init_state: null
+  contact_pairs_multiplier: 16
+  num_key_bodies: ${len:${robot.key_bodies}}
+  mimic_small_marker_bodies: null
+  randomize_link_body_names: ???
+  control:
+    control_type: isaac_pd
+    stiffness: null
+    damping: null
+    action_scale: 1.0
+    isaac_pd_scale: False
+    clamp_actions: 1.0
+    clip_torques: ???
+  asset:
+    collapse_fixed_joints: null
+    replace_cylinder_with_capsule: null
+    flip_visual_attachments: null
+    armature: null
+    thickness: null
+    max_angular_velocity: null
+    max_linear_velocity: null
+    density: null
+    angular_damping: null
+    linear_damping: null
+    disable_gravity: null
+    fix_base_link: null
+    default_dof_drive_mode: 1
+    robot_type: ???
+    urdf_file: null
+    usd_file: null
+    xml_file: null
+    asset_root: "humanoidverse/data/robots"
+    self_collisions: True
+    filter_ints: null

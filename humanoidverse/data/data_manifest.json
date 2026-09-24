@@ -1,0 +1,32 @@
+{
+  "lafan_locomotion_mix2000.pkl": {
+    "bytes": 151389979,
+    "parts": [
+      {
+        "path": "packed/lafan_locomotion_mix2000.pkl.gz.part000",
+        "bytes": 50331648
+      },
+      {
+        "path": "packed/lafan_locomotion_mix2000.pkl.gz.part001",
+        "bytes": 50331648
+      },
+      {
+        "path": "packed/lafan_locomotion_mix2000.pkl.gz.part002",
+        "bytes": 49678264
+      }
+    ]
+  },
+  "lafan_29dof.pkl": {
+    "bytes": 209659488,
+    "parts": [
+      {
+        "path": "packed/lafan_29dof.pkl.gz.part000",
+        "bytes": 50331648
+      },
+      {
+        "path": "packed/lafan_29dof.pkl.gz.part001",
+        "bytes": 25569739
+      }
+    ]
+  }
+}
