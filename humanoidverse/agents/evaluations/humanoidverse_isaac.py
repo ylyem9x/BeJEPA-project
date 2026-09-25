@@ -505,6 +505,9 @@ def _async_tracking_worker(
         tracking_wrist_body_pos[m_id] = tracking_target_dict["ref_body_pos"][:, wrist_tracking_body_indices].clone()
         tracking_wrist_body_rot[m_id] = tracking_target_dict["ref_body_rots"][:, wrist_tracking_body_indices].clone()
         ref_body_rots = tracking_target_dict["ref_body_rots"][0, 0]
+        if isaac_env.simulator.__class__.__name__ == "IsaacSim":
+            # Motion data uses xyzw; Isaac Sim's root-pose writer expects wxyz.
+            ref_body_rots = ref_body_rots[[3, 0, 1, 2]]
         ref_root_init_state = torch.cat(
             [
                 tracking_target_dict["ref_body_pos"][0, 0],
