@@ -53,3 +53,7 @@ SJTU
 SII
 
 剩余参考openreviewer作者里面的机构，排序随意，联想排在最后
+
+## 网页展示补充
+
+SJTU 的机构名称展示为 RL² Lab, Shanghai Jiao Tong University。顶部左侧使用用户提供的 RL² Lab 标识，不另加 SJTU 标识。`tju` 指 Tongji University（同济大学）。

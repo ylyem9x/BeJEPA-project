@@ -127,7 +127,7 @@ window.BEJEPA_CONFIG = {
   "affiliations": [
     {
       "id": "1",
-      "name": "Shanghai Jiao Tong University"
+      "name": "RL² Lab, Shanghai Jiao Tong University"
     },
     {
       "id": "2",

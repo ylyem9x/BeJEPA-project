@@ -24,12 +24,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
-a:focus-visible { outline: 2px solid #111; outline-offset: 5px; }
+:focus-visible { outline: 2px solid #111; outline-offset: 5px; }
 img, video { display: block; max-width: 100%; height: auto; }
-p, h1, h2, h3, figure { margin: 0; }
+p, h1, h2, h3, h4, figure { margin: 0; }
 strong { font-weight: 600; }
 .page { width: min(1060px, calc(100% - 48px)); margin: 0 auto; }
-.paper-header { text-align: center; padding: 72px 0 38px; }
+.lab-brand { padding-top: 24px; }
+.lab-brand img { width: 330px; height: auto; }
+.paper-header { text-align: center; padding: 40px 0 38px; }
 h1 {
   max-width: 1040px;
   margin: 0 auto 30px;
@@ -72,34 +74,72 @@ sup { font-size: .66em; line-height: 0; margin-left: 2px; }
   gap: 9px;
   padding: 7px 15px;
   min-height: 38px;
-  border: 1px solid #d3d3d3;
-  border-radius: 5px;
+  border: 1px solid #222;
+  border-radius: 999px;
+  background: #222;
+  color: #fff;
   font-size: 13px;
   line-height: 1.5;
 }
-.coming-soon > span { border-left: 1px solid #ddd; padding-left: 10px; color: var(--muted); font-size: 11px; }
+.coming-soon > span { border-left: 1px solid #666; padding-left: 10px; color: #ddd; font-size: 11px; }
 .coming-soon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .video-section { width: min(960px, 100%); margin: 0 auto; }
-video { width: 100%; aspect-ratio: 16/9; object-fit: contain; background: #111; border-radius: 6px; }
+video { width: 100%; aspect-ratio: 16/9; object-fit: contain; background: #111; border-radius: 12px; box-shadow: 0 8px 32px #0000000d; }
 .video-caption, figcaption { text-align: center; font-size: 13px; line-height: 1.65; color: var(--muted); margin-top: 15px; }
-.content-section { width: min(960px, 100%); margin: 66px auto 0; }
-h2 { text-align: center; font-size: 29px; font-weight: 580; letter-spacing: -.035em; line-height: 1.3; margin-bottom: 25px; }
+.content-section { width: min(960px, 100%); margin: 68px auto 0; padding-top: 42px; border-top: 1px solid var(--line); }
+h2 { text-align: center; font-size: 32px; font-weight: 650; letter-spacing: -.035em; line-height: 1.3; margin-bottom: 28px; }
 .prose { max-width: 860px; margin: 0 auto; font-size: 16px; line-height: 1.85; }
 .teaser { margin-top: 32px; }
-figure a { display: block; }
+figure > a { display: block; }
 figure img { width: 100%; height: auto; }
 .teaser figcaption { margin-top: 20px; }
 .architecture { margin: 30px 0 27px; }
-.results { display: grid; grid-template-columns: repeat(2, 1fr); gap: 42px; max-width: 860px; margin: 33px auto 0; }
+.results-section { width: 100%; }
+.section-intro { text-align: center; color: var(--muted); font-size: 16px; margin: -13px auto 30px; }
+.results { display: grid; grid-template-columns: repeat(2, 1fr); gap: 42px; padding: 27px 30px 30px; background: #f7f7f7; border: 1px solid #eaeaea; border-radius: 14px; margin: 0 auto 46px; }
 .result { text-align: center; }
 .result + .result { border-left: 1px solid var(--line); padding-left: 42px; }
-h3 { font-size: 15px; font-weight: 500; color: #444; }
+.result h3 { font-size: 15px; font-weight: 500; color: #444; }
 .result-value { font-size: 43px; font-weight: 580; letter-spacing: -.055em; line-height: 1.5; margin-top: 7px; white-space: nowrap; }
 .result-value > span { font-size: 20px; font-weight: 400; letter-spacing: -.02em; }
 .result-value > .result-arrow { font-size: 29px; padding: 0 3px; }
 .result-description { font-size: 13px; line-height: 1.85; margin-top: 9px; color: #555; }
 .result-description strong { color: #222; }
-.experiment-note { max-width: 780px; margin: 28px auto 0; font-size: 11px; line-height: 1.8; color: var(--muted); text-align: center; }
+.result-block { margin-top: 36px; padding: 32px; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 4px 24px #00000004; }
+.result-heading { display: flex; align-items: baseline; gap: 15px; margin-bottom: 15px; }
+.result-number { color: #888; font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.result-heading h3 { font-size: 23px; line-height: 1.35; font-weight: 620; letter-spacing: -.025em; }
+.result-copy { font-size: 15px; line-height: 1.85; color: #454545; }
+.result-copy strong { color: var(--text); }
+.benchmark { margin-top: 27px; }
+.benchmark + .benchmark { margin-top: 30px; }
+.benchmark-label { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+.benchmark-label h4 { font-size: 14px; font-weight: 650; letter-spacing: .04em; }
+.benchmark-label > span { font-size: 11px; color: var(--muted); }
+.table-scroll { width: 100%; overflow-x: auto; border-top: 2px solid #333; border-bottom: 2px solid #333; scrollbar-color: #aaa #f5f5f5; }
+.tracking-table { width: 100%; min-width: 650px; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; line-height: 1.5; }
+.tracking-table th, .tracking-table td { padding: 12px 15px; text-align: right; white-space: nowrap; }
+.tracking-table th:first-child { text-align: left; width: 30%; }
+.tracking-table thead { background: #fafafa; border-bottom: 1px solid #cfcfcf; }
+.tracking-table thead th { font-size: 12px; font-weight: 600; }
+.tracking-table thead span { display: block; font-size: 11px; color: #777; font-weight: 400; }
+.tracking-table tbody th { font-weight: 450; }
+.tracking-table tbody tr + tr { border-top: 1px solid #ededed; }
+.tracking-table .ours { background: #f5f5f5; }
+.tracking-table .ours th { font-weight: 600; }
+.tracking-table tbody .ours:not(.mpc) { border-top: 1px solid #bcbcbc; }
+.tracking-table .mpc { background: #ececec; }
+.tracking-table .mpc th span { font-weight: 450; font-size: 11px; }
+.tracking-table strong { font-weight: 750; }
+u { text-underline-offset: 3px; }
+.table-note, .experiment-note { margin-top: 14px; font-size: 11px; line-height: 1.8; color: var(--muted); }
+.experiment-note { margin-top: 8px; }
+.result-figure { margin-top: 26px; }
+.result-figure figcaption { text-align: left; font-size: 12px; margin-top: 18px; }
+.result-figure figcaption a { white-space: nowrap; text-underline-offset: 3px; }
+.takeaway { margin-top: 24px; padding: 18px 22px; background: #f7f7f7; border-left: 3px solid #333; border-radius: 0 8px 8px 0; font-size: 14px; line-height: 1.8; color: #444; }
+.takeaway strong { color: var(--text); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .citation-section { margin-top: 62px; padding-bottom: 60px; }
 .citation-section h2 { margin-bottom: 20px; }
 pre { min-height: 76px; margin: 0 auto; max-width: 860px; padding: 18px; background: #fafafa; border: 1px solid #eee; border-radius: 4px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; line-height: 1.8; }
@@ -107,29 +147,48 @@ code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace; }
 
 @media (max-width: 700px) {
   .page { width: calc(100% - 36px); }
-  .paper-header { padding-top: 43px; padding-bottom: 29px; }
+  .lab-brand { padding-top: 18px; }
+  .lab-brand img { width: 260px; max-width: 85%; }
+  .paper-header { padding-top: 34px; padding-bottom: 29px; }
   h1 { font-size: 32px; line-height: 1.23; letter-spacing: -.045em; margin-bottom: 25px; }
   .authors { font-size: 15px; gap: 5px 16px; line-height: 1.7; }
   .affiliations { font-size: 12px; gap: 2px 15px; margin-top: 17px; }
   .author-note { font-size: 11px; margin-top: 8px; }
   .project-links { margin-top: 20px; }
   .coming-soon { font-size: 12px; }
-  video { border-radius: 4px; }
+  video { border-radius: 8px; }
   .video-caption, figcaption { font-size: 11px; margin-top: 12px; }
-  .content-section { margin-top: 48px; }
-  h2 { font-size: 25px; margin-bottom: 20px; }
+  .content-section { margin-top: 48px; padding-top: 30px; }
+  h2 { font-size: 27px; margin-bottom: 20px; }
   .prose { font-size: 14px; line-height: 1.85; }
   .teaser { margin-top: 25px; }
   .teaser figcaption { margin-top: 13px; }
   .architecture { margin: 25px 0 21px; }
-  .results { gap: 21px; margin-top: 26px; }
+  .section-intro { margin: -6px auto 24px; font-size: 13px; }
+  .results { gap: 21px; padding: 22px 16px; margin-bottom: 28px; }
   .result + .result { padding-left: 21px; }
-  h3 { font-size: 12px; }
+  .result h3 { font-size: 12px; }
   .result-value { font-size: 29px; margin-top: 9px; }
   .result-value > span { font-size: 14px; }
   .result-value > .result-arrow { font-size: 19px; padding: 0; }
   .result-description { font-size: 11px; }
-  .experiment-note { font-size: 10px; margin-top: 23px; }
+  .result-block { margin-top: 24px; padding: 23px 18px; border-radius: 10px; }
+  .result-heading { gap: 10px; margin-bottom: 12px; }
+  .result-heading h3 { font-size: 20px; }
+  .result-number { font-size: 12px; }
+  .result-copy { font-size: 13px; }
+  .table-scroll { width: calc(100% + 36px); margin-left: -18px; }
+  .tracking-table { min-width: 610px; font-size: 12px; }
+  .tracking-table th, .tracking-table td { padding: 11px 12px; }
+  .tracking-table tbody th { position: sticky; left: 0; background: #fff; box-shadow: 1px 0 #e3e3e3; white-space: normal; min-width: 153px; }
+  .tracking-table .ours th { background: #f5f5f5; }
+  .tracking-table .mpc th { background: #ececec; }
+  .tracking-table .mpc th span { display: block; }
+  .tracking-table thead th:first-child { position: sticky; left: 0; background: #fafafa; box-shadow: 1px 0 #e3e3e3; }
+  .result-figure { margin: 23px -10px 0; }
+  .result-figure figcaption { font-size: 11px; padding: 0 10px; margin-top: 14px; }
+  .takeaway { font-size: 12px; padding: 14px 16px; }
+  .table-note, .experiment-note { font-size: 10px; }
   .citation-section { padding-bottom: 40px; }
 }
 
@@ -139,6 +198,6 @@ code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace; }
   .result-value { font-size: 37px; }
   .result-value > span { font-size: 17px; }
   .result-value > .result-arrow { font-size: 24px; }
-  h3 { font-size: 14px; }
+  .result h3 { font-size: 14px; }
   .result-description { font-size: 12px; }
 }

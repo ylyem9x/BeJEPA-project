@@ -20,6 +20,9 @@
 </head>
 <body>
   <main class="page">
+    <div class="lab-brand" aria-label="Primary research lab">
+      <img src="assets/rl2-lab.png" width="1957" height="261" alt="RL² — Real Life & Real Learning Lab">
+    </div>
     <header class="paper-header">
       <h1><strong>BeJEPA:</strong> A Goal-Conditioned Humanoid Behavior World Model via Unsupervised RL</h1>
       <div class="authors" id="authors" aria-label="Authors">
@@ -39,7 +42,7 @@
         <a href="https://openreview.net/profile?id=~Yue_Gao8">Yue Gao<sup>1,2,†</sup></a>
       </div>
       <div class="affiliations" id="affiliations">
-        <span><sup>1</sup>Shanghai Jiao Tong University</span>
+        <span><sup>1</sup>RL² Lab, Shanghai Jiao Tong University</span>
         <span><sup>2</sup>Shanghai Innovation Institute</span>
         <span><sup>3</sup>Zhejiang University</span>
         <span><sup>4</sup>Tongji University</span>
@@ -81,6 +84,7 @@
 
     <section class="content-section results-section" id="results" aria-labelledby="results-heading">
       <h2 id="results-heading">Key results</h2>
+      <p class="section-intro">Coordinating whole-body posture, world placement, and execution timing.</p>
       <div class="results">
         <article class="result">
           <h3>Global body-position error</h3>
@@ -93,7 +97,65 @@
           <p class="result-description">Mean signed joint-tracking lag on AMASS.<br>BeJEPA → BeJEPA-MPC (Balanced),<br>using the same pretrained weights.</p>
         </article>
       </div>
-      <p class="experiment-note">20-second motion tracking on the 29-actuator G1 in MuJoCo at 50 Hz. MPC results use the Balanced setting.</p>
+      <article class="result-block" aria-labelledby="tracking-heading">
+        <div class="result-heading"><span class="result-number" aria-hidden="true">01</span><h3 id="tracking-heading">Whole-body motion tracking</h3></div>
+        <p class="result-copy">BeJEPA-MPC (Balanced) achieves the lowest global body-position and root errors among the compared methods on both datasets. Local posture and wrist errors are reported alongside them to show the trade-offs in world-coordinate tracking.</p>
+
+        <div class="benchmark" aria-labelledby="amass-label">
+          <div class="benchmark-label"><h4 id="amass-label">AMASS</h4><span>Lower is better ↓</span></div>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="AMASS motion tracking results; scroll horizontally on smaller screens">
+            <table class="tracking-table">
+              <caption class="sr-only">Whole-body motion tracking on selected 20-second AMASS segments.</caption>
+              <thead><tr><th scope="col">Method</th><th scope="col">Global MPJPE<span>mm ↓</span></th><th scope="col">Local MPJPE<span>mm ↓</span></th><th scope="col">Root error<span>↓</span></th><th scope="col">Wrist error<span>↓</span></th></tr></thead>
+              <tbody>
+                <tr><th scope="row">BFM-Zero (world)</th><td>573.4</td><td>97.1</td><td>0.801</td><td>32.4</td></tr>
+                <tr><th scope="row">SONIC</th><td>531.5</td><td><strong>49.7</strong></td><td>0.571</td><td><strong>15.3</strong></td></tr>
+                <tr><th scope="row">Humanoid-GPT</th><td>832.4</td><td>115.7</td><td>1.107</td><td>27.5</td></tr>
+                <tr class="ours"><th scope="row">BeJEPA</th><td><u>278.0</u></td><td>82.3</td><td><u>0.377</u></td><td>25.9</td></tr>
+                <tr class="ours mpc"><th scope="row">BeJEPA-MPC <span>(Balanced)</span></th><td><strong>219.5</strong></td><td><u>63.9</u></td><td><strong>0.255</strong></td><td><u>16.3</u></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="benchmark" aria-labelledby="lafan-label">
+          <div class="benchmark-label"><h4 id="lafan-label">LAFAN</h4><span>Lower is better ↓</span></div>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="LAFAN motion tracking results; scroll horizontally on smaller screens">
+            <table class="tracking-table">
+              <caption class="sr-only">Whole-body motion tracking on selected 20-second LAFAN segments.</caption>
+              <thead><tr><th scope="col">Method</th><th scope="col">Global MPJPE<span>mm ↓</span></th><th scope="col">Local MPJPE<span>mm ↓</span></th><th scope="col">Root error<span>↓</span></th><th scope="col">Wrist error<span>↓</span></th></tr></thead>
+              <tbody>
+                <tr><th scope="row">BFM-Zero (world)</th><td>797.1</td><td>89.3</td><td>1.020</td><td>25.8</td></tr>
+                <tr><th scope="row">SONIC</th><td>887.5</td><td><u>77.8</u></td><td>0.971</td><td><u>23.6</u></td></tr>
+                <tr><th scope="row">Humanoid-GPT</th><td>1433.1</td><td>127.9</td><td>1.720</td><td>29.7</td></tr>
+                <tr class="ours"><th scope="row">BeJEPA</th><td><u>584.5</u></td><td>81.9</td><td><u>0.716</u></td><td>24.3</td></tr>
+                <tr class="ours mpc"><th scope="row">BeJEPA-MPC <span>(Balanced)</span></th><td><strong>543.8</strong></td><td><strong>75.3</strong></td><td><strong>0.639</strong></td><td><strong>20.1</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="table-note"><strong>Bold</strong> and <u>underline</u> mark the best and second-best values. Root error = xy error (m) + 0.01 × yaw error (degrees); wrist error = local position error (cm) + 0.5 × orientation error (degrees).</p>
+        <p class="experiment-note">Evaluation uses selected, non-interactive 20-second AMASS and LAFAN segments with the 29-actuator G1 in MuJoCo at 50 Hz. Trajectories with large spatial deviations are retained.</p>
+      </article>
+
+      <article class="result-block" aria-labelledby="mpc-heading">
+        <div class="result-heading"><span class="result-number" aria-hidden="true">02</span><h3 id="mpc-heading">More precise execution, the same pretrained model</h3></div>
+        <p class="result-copy">Dynamic-based MPC refines actions at inference time without retraining. The Balanced setting reduces all six tracking errors, with a mean relative reduction of <strong>31.2% on AMASS</strong> and <strong>13.4% on LAFAN</strong> over BeJEPA. Changing the MPC cost shifts priority toward root translation or wrist orientation.</p>
+        <figure class="result-figure">
+          <a href="assets/tracking-priorities.webp" target="_blank" rel="noopener" aria-label="View tracking trade-offs and temporal alignment at full size"><img src="assets/tracking-priorities.webp" width="2400" height="802" loading="lazy" alt="AMASS radar plot comparing six normalized tracking errors across BeJEPA and three MPC settings, alongside mean signed lag of 94.8, 21.2, 45.5, and 50.0 milliseconds respectively."></a>
+          <figcaption><strong>Tracking priorities and temporal alignment on AMASS.</strong> Left: errors normalized by BeJEPA; outward is better. Right: mean signed joint-tracking lag. <a href="assets/tracking-priorities.webp" target="_blank" rel="noopener">View full size ↗</a></figcaption>
+        </figure>
+        <div class="takeaway"><strong>Closer to the reference clock.</strong> Balanced MPC reduces mean signed lag from 94.8 to 21.2 ms on AMASS, and from 97.2 to 51.0 ms on LAFAN, using the same pretrained weights.</div>
+      </article>
+
+      <article class="result-block" aria-labelledby="hardware-heading">
+        <div class="result-heading"><span class="result-number" aria-hidden="true">03</span><h3 id="hardware-heading">World-anchored control on the physical G1</h3></div>
+        <p class="result-copy">On the physical robot, BeJEPA coordinates posture with a persistent world reference: returning after an external kick, standing up from the ground, and switching between goals before returning to the starting location.</p>
+        <figure class="result-figure robot-figure">
+          <a href="assets/real-robot-results.webp" target="_blank" rel="noopener" aria-label="View physical robot experiments at full size"><img src="assets/real-robot-results.webp" width="2400" height="723" loading="lazy" alt="Physical G1 experiments: (a) returning to a marked floor location after a kick, (b) standing up from the ground, and (c) moving from a T-pose through kneeling, advancing, turning, and returning."></a>
+          <figcaption><strong>(a)</strong> Disturbance recovery. <strong>(b)</strong> Ground recovery. <strong>(c)</strong> Sequential goal switching. Gold rings identify floor reference marks. <a href="assets/real-robot-results.webp" target="_blank" rel="noopener">View full size ↗</a></figcaption>
+        </figure>
+      </article>
     </section>
 
     <section class="content-section citation-section" id="cite" aria-labelledby="cite-heading">
