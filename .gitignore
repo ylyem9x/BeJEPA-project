@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+__pycache__/
+.env
+.env.*
+# Research materials must not be added to this website repository.
+code/
+downloads/
+*.pdf
+*.zip
+*.pkl
+*.pth
+*.safetensors

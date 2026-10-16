@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>BeJEPA: A Goal-Conditioned Humanoid Behavior World Model</title>
+  <meta name="description" content="BeJEPA learns a goal-conditioned behavior world model for humanoid control through unsupervised reinforcement learning, coordinating posture, world position, and heading.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BeJEPA: A Goal-Conditioned Humanoid Behavior World Model via Unsupervised RL">
+  <meta property="og:description" content="A shared representation of whole-body posture and world placement for humanoid control.">
+  <meta property="og:url" content="https://ylyem9x.github.io/BeJEPA-project/">
+  <meta property="og:image" content="https://ylyem9x.github.io/BeJEPA-project/assets/social-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://ylyem9x.github.io/BeJEPA-project/">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.config.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="paper-header">
+      <h1><strong>BeJEPA:</strong> A Goal-Conditioned Humanoid Behavior World Model via Unsupervised RL</h1>
+      <div class="authors" id="authors" aria-label="Authors">
+        <a href="https://openreview.net/profile?id=~Liyun_Yan1">Liyun Yan<sup>1,2</sup></a>
+        <a href="https://openreview.net/profile?id=~Haoyang_Li24">Haoyang Li<sup>1,2</sup></a>
+        <a href="https://openreview.net/profile?id=~Yang_Zhang87">Yang Zhang<sup>1</sup></a>
+        <a href="https://openreview.net/profile?id=~Jialing_Zhu3">Jialing Zhu<sup>1</sup></a>
+        <a href="https://openreview.net/profile?id=~Zhanxiang_Cao1">Zhanxiang Cao<sup>1,2</sup></a>
+        <a href="https://openreview.net/profile?id=~Zihao_Zhou19">Zihao Zhou<sup>1,2</sup></a>
+        <a href="https://openreview.net/profile?id=~Keqi_Zhu1">Keqi Zhu<sup>2,3</sup></a>
+        <a href="https://openreview.net/profile?id=~Yizhi_Chen3">Yizhi Chen<sup>2,4</sup></a>
+        <a href="https://openreview.net/profile?id=~Huang_Chuxuan2">Huang Chuxuan<sup>2,5</sup></a>
+        <a href="https://openreview.net/profile?id=~Shengcheng_Fu1">Shengcheng Fu<sup>2,4</sup></a>
+        <a href="https://openreview.net/profile?id=~Zhong_Jiangwei1">Zhong Jiangwei<sup>6</sup></a>
+        <a href="https://openreview.net/profile?id=~Qiao_Sun6">Qiao Sun<sup>6</sup></a>
+        <a href="https://openreview.net/profile?id=~Chen_ZHANG85">Chen Zhang<sup>6</sup></a>
+        <a href="https://openreview.net/profile?id=~Yue_Gao8">Yue Gao<sup>1,2,†</sup></a>
+      </div>
+      <div class="affiliations" id="affiliations">
+        <span><sup>1</sup>Shanghai Jiao Tong University</span>
+        <span><sup>2</sup>Shanghai Innovation Institute</span>
+        <span><sup>3</sup>Zhejiang University</span>
+        <span><sup>4</sup>Tongji University</span>
+        <span><sup>5</sup>Fudan University</span>
+        <span><sup>6</sup>Robotics Lab, Lenovo Research, Lenovo Group Limited</span>
+      </div>
+      <p class="author-note">† Corresponding author</p>
+      <div class="project-links">
+        <span class="coming-soon" aria-label="Code coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg> Code <span>Coming soon</span></span>
+      </div>
+    </header>
+
+    <section class="video-section" aria-label="Project video">
+      <video id="project-video" controls playsinline preload="metadata" poster="assets/video-poster.jpg" aria-label="BeJEPA project introduction and real robot experiments">
+        <source src="assets/BeJEPA-demo.mp4" type="video/mp4">
+        <source src="assets/BeJEPA-demo.webm" type="video/webm">
+        <track kind="captions" src="assets/demo-captions.vtt" srclang="en" label="English descriptions">
+        Your browser does not support embedded video.
+      </video>
+      <p class="video-caption">World-anchored whole-body control on the Unitree G1.</p>
+    </section>
+
+    <section class="content-section" id="abstract" aria-labelledby="abstract-heading">
+      <h2 id="abstract-heading">Abstract</h2>
+      <p class="prose"><strong>BeJEPA</strong> learns a goal-conditioned behavior world model for humanoid control through unsupervised reinforcement learning from human motion priors and robot interaction. It represents whole-body posture, world position, and heading in a shared latent space. A <strong>Dynamic Predictor</strong> models immediate action consequences, while a <strong>Successor Predictor</strong> summarizes expected long-term behavior. Their composition guides policy learning without long imagined rollouts, and Dynamic further refines actions at inference time. BeJEPA improves world-coordinate motion tracking and enables a physical Unitree G1 to reach joint posture and world-pose goals, stand up from the ground, and return after disturbances and goal changes.</p>
+      <figure class="teaser">
+        <a href="assets/teaser.webp" target="_blank" rel="noopener" aria-label="View the BeJEPA teaser at full size"><img src="assets/teaser.webp" width="1577" height="671" loading="lazy" alt="BeJEPA combines world-goal tracking, a behavior world model with Dynamic and Successor predictors, and online action refinement."></a>
+        <figcaption>One shared representation connects posture, world placement, and goal-conditioned behavior.</figcaption>
+      </figure>
+    </section>
+
+    <section class="content-section" id="method" aria-labelledby="method-heading">
+      <h2 id="method-heading">Method</h2>
+      <figure class="architecture">
+        <a href="assets/architecture.webp" target="_blank" rel="noopener" aria-label="View the BeJEPA architecture at full size"><img src="assets/architecture.webp" width="2201" height="738" loading="lazy" alt="The shared encoder, actor, Dynamic Predictor, and Successor Predictor, with transition and behavioral learning objectives."></a>
+      </figure>
+      <p class="prose"><strong>One physical prediction, one behavioral summary.</strong> Dynamic predicts the next state embedding under an action; Successor predicts discounted future embeddings under a goal-conditioned policy. Both train the shared encoder, and their composition trains the actor to choose actions by their long-term goal alignment. At inference, the same Dynamic Predictor supports model-predictive action refinement for more precise spatial and temporal tracking.</p>
+    </section>
+
+    <section class="content-section results-section" id="results" aria-labelledby="results-heading">
+      <h2 id="results-heading">Key results</h2>
+      <div class="results">
+        <article class="result">
+          <h3>Global body-position error</h3>
+          <p class="result-value">219.5 <span>mm</span></p>
+          <p class="result-description">Global MPJPE on AMASS.<br><strong>61.7% lower</strong> than BFM-Zero (world)<br>and <strong>58.7% lower</strong> than SONIC.</p>
+        </article>
+        <article class="result">
+          <h3>Temporal alignment</h3>
+          <p class="result-value">94.8 <span class="result-arrow">→</span> 21.2 <span>ms</span></p>
+          <p class="result-description">Mean signed joint-tracking lag on AMASS.<br>BeJEPA → BeJEPA-MPC (Balanced),<br>using the same pretrained weights.</p>
+        </article>
+      </div>
+      <p class="experiment-note">20-second motion tracking on the 29-actuator G1 in MuJoCo at 50 Hz. MPC results use the Balanced setting.</p>
+    </section>
+
+    <section class="content-section citation-section" id="cite" aria-labelledby="cite-heading">
+      <h2 id="cite-heading">Citation</h2>
+      <pre id="citation" aria-label="Citation, awaiting the arXiv release"><code id="bibtex"></code></pre>
+    </section>
+  </main>
+</body>
+</html>

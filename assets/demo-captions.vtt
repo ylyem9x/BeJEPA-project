@@ -1,0 +1,25 @@
+WEBVTT
+
+00:00.000 --> 00:06.000
+A physical Unitree G1 recovers after an external disturbance.
+
+00:06.000 --> 00:12.233
+BeJEPA: a goal-conditioned humanoid behavior world model.
+
+00:12.233 --> 00:22.000
+The goal combines whole-body posture, world position, and heading.
+
+00:22.000 --> 00:38.000
+Dynamic predicts the next state embedding. Successor summarizes future behavior.
+
+00:38.000 --> 00:49.233
+Motion-tracking and goal-inference results compare BeJEPA with baselines.
+
+00:49.233 --> 00:58.233
+Goal and real-robot views show recovery from the ground.
+
+00:58.233 --> 01:22.667
+The robot changes posture, position, and heading while following world-anchored goals.
+
+01:22.667 --> 01:27.667
+A montage compares goal states and behavior on the physical robot.
