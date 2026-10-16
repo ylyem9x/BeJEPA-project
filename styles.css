@@ -102,8 +102,10 @@ figure img { width: 100%; height: auto; }
 .method-explainer h3 { margin: 20px 0 8px; color: var(--text); font-size: 18px; font-weight: 600; letter-spacing: -.02em; }
 .method-explainer h3:first-child { margin-top: 0; }
 .method-explainer p + p { margin-top: 14px; }
-.equation { margin: 12px 0; padding: 8px; overflow-x: auto; scrollbar-color: #aaa #f5f5f5; color: var(--text); }
-.equation math { width: max-content; min-width: 100%; margin: 0; font-size: 19px; }
+.method-explainer .katex { font-size: 1.08em; }
+.equation { margin: 12px 0; padding: 10px 8px; overflow-x: auto; scrollbar-color: #aaa #f5f5f5; color: #171717; font-size: 20px; }
+.equation .katex { font-size: 1em; }
+.equation .katex-display { width: max-content; min-width: 100%; margin: 0; }
 .equation + .equation { margin-top: -5px; }
 .results-section { width: 100%; }
 .section-intro { text-align: center; color: var(--muted); font-size: 16px; margin: -13px auto 30px; }
@@ -168,8 +170,7 @@ code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace; }
   .architecture { margin: 25px 0 21px; }
   .method-explainer { font-size: 14px; margin-top: 25px; }
   .method-explainer h3 { font-size: 17px; margin-top: 22px; }
-  .equation { margin: 14px 0; padding: 9px 2px; }
-  .equation math { font-size: 17px; }
+  .equation { margin: 14px 0; padding: 9px 2px; font-size: 17px; }
   .section-intro { margin: -6px auto 24px; font-size: 13px; }
   .result-block { margin-top: 24px; padding: 23px 18px; border-radius: 10px; }
   .result-heading { gap: 10px; margin-bottom: 12px; }

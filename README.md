@@ -27,8 +27,8 @@ The complete video and descriptive captions come from the supplied supplementary
 
 Key results begin directly with the full AMASS and LAFAN tables, reproducing the paper's tracking table, including best and second-best values. Comparisons use selected, non-interactive 20-second G1 tracking experiments in MuJoCo at 50 Hz, retaining trajectories with large spatial deviations. The MPC plot illustrates execution priorities and temporal alignment; the hardware montage shows disturbance recovery, ground recovery, and goal switching. No manuscript or research code is distributed by this website.
 
-The method explanation follows the paper's goal-reward, Dynamic prediction, Successor-feature, and composed-action-value equations. Equations use native MathML with no external rendering scripts. The RL² favicon displays the emblem portion of the supplied lab banner through an SVG viewport; the original image is embedded unchanged.
+The method explanation follows the paper's goal-reward, Dynamic prediction, Successor-feature, and composed-action-value equations. Equations are pre-rendered with KaTeX 0.19.0, with locally hosted styles and fonts; no browser rendering script or CDN is required. Each formula retains its LaTeX source in its accessible MathML annotation. The RL² favicon displays the emblem portion of the supplied lab banner through an SVG viewport; the original image is embedded unchanged.
 
-The bundled Inter font retains its SIL Open Font License at `assets/fonts/OFL.txt`. Research media retain their original rights.
+The bundled Inter font retains its SIL Open Font License at `assets/fonts/OFL.txt`. KaTeX retains its MIT license at `assets/katex/LICENSE`; its CSS is configured to use the bundled WOFF2 fonts. Research media retain their original rights.
 
 The academic layout references [Demo-JEPA](https://log2r.github.io/Demo-JEPA/), with expanded tables, explanatory text, and figures, following earlier references to [Diffusion Policy](https://diffusion-policy.cs.columbia.edu/) and [UMI on Legs](https://umi-on-legs.github.io/). No third-party template code or research assets were copied.
