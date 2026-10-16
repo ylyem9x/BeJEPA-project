@@ -67,8 +67,8 @@ sup { font-size: .66em; line-height: 0; margin-left: 2px; }
 }
 .affiliations sup { margin: 0 4px 0 0; }
 .author-note { margin-top: 9px; font-size: 12px; color: var(--muted); }
-.project-links { display: flex; justify-content: center; margin-top: 24px; }
-.coming-soon {
+.project-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.project-link {
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -80,9 +80,13 @@ sup { font-size: .66em; line-height: 0; margin-left: 2px; }
   color: #fff;
   font-size: 13px;
   line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
 }
-.coming-soon > span { border-left: 1px solid #666; padding-left: 10px; color: #ddd; font-size: 11px; }
-.coming-soon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.project-link > span { border-left: 1px solid #666; padding-left: 10px; color: #ddd; font-size: 11px; }
+.project-link svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.project-link[href]:hover { background: #444; }
+.project-link[aria-disabled="true"] { cursor: default; }
 .video-section { width: min(960px, 100%); margin: 0 auto; }
 video { width: 100%; aspect-ratio: 16/9; object-fit: contain; background: #111; border-radius: 12px; box-shadow: 0 8px 32px #0000000d; }
 .video-caption, figcaption { text-align: center; font-size: 13px; line-height: 1.65; color: var(--muted); margin-top: 15px; }
@@ -94,17 +98,15 @@ figure > a { display: block; }
 figure img { width: 100%; height: auto; }
 .teaser figcaption { margin-top: 20px; }
 .architecture { margin: 30px 0 27px; }
+.method-explainer { max-width: 860px; margin: 32px auto 0; font-size: 15px; line-height: 1.75; color: #454545; }
+.method-explainer h3 { margin: 20px 0 8px; color: var(--text); font-size: 18px; font-weight: 600; letter-spacing: -.02em; }
+.method-explainer h3:first-child { margin-top: 0; }
+.method-explainer p + p { margin-top: 14px; }
+.equation { margin: 12px 0; padding: 8px; overflow-x: auto; scrollbar-color: #aaa #f5f5f5; color: var(--text); }
+.equation math { width: max-content; min-width: 100%; margin: 0; font-size: 19px; }
+.equation + .equation { margin-top: -5px; }
 .results-section { width: 100%; }
 .section-intro { text-align: center; color: var(--muted); font-size: 16px; margin: -13px auto 30px; }
-.results { display: grid; grid-template-columns: repeat(2, 1fr); gap: 42px; padding: 27px 30px 30px; background: #f7f7f7; border: 1px solid #eaeaea; border-radius: 14px; margin: 0 auto 46px; }
-.result { text-align: center; }
-.result + .result { border-left: 1px solid var(--line); padding-left: 42px; }
-.result h3 { font-size: 15px; font-weight: 500; color: #444; }
-.result-value { font-size: 43px; font-weight: 580; letter-spacing: -.055em; line-height: 1.5; margin-top: 7px; white-space: nowrap; }
-.result-value > span { font-size: 20px; font-weight: 400; letter-spacing: -.02em; }
-.result-value > .result-arrow { font-size: 29px; padding: 0 3px; }
-.result-description { font-size: 13px; line-height: 1.85; margin-top: 9px; color: #555; }
-.result-description strong { color: #222; }
 .result-block { margin-top: 36px; padding: 32px; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 4px 24px #00000004; }
 .result-heading { display: flex; align-items: baseline; gap: 15px; margin-bottom: 15px; }
 .result-number { color: #888; font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; }
@@ -155,7 +157,7 @@ code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace; }
   .affiliations { font-size: 12px; gap: 2px 15px; margin-top: 17px; }
   .author-note { font-size: 11px; margin-top: 8px; }
   .project-links { margin-top: 20px; }
-  .coming-soon { font-size: 12px; }
+  .project-link { font-size: 12px; }
   video { border-radius: 8px; }
   .video-caption, figcaption { font-size: 11px; margin-top: 12px; }
   .content-section { margin-top: 48px; padding-top: 30px; }
@@ -164,14 +166,11 @@ code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace; }
   .teaser { margin-top: 25px; }
   .teaser figcaption { margin-top: 13px; }
   .architecture { margin: 25px 0 21px; }
+  .method-explainer { font-size: 14px; margin-top: 25px; }
+  .method-explainer h3 { font-size: 17px; margin-top: 22px; }
+  .equation { margin: 14px 0; padding: 9px 2px; }
+  .equation math { font-size: 17px; }
   .section-intro { margin: -6px auto 24px; font-size: 13px; }
-  .results { gap: 21px; padding: 22px 16px; margin-bottom: 28px; }
-  .result + .result { padding-left: 21px; }
-  .result h3 { font-size: 12px; }
-  .result-value { font-size: 29px; margin-top: 9px; }
-  .result-value > span { font-size: 14px; }
-  .result-value > .result-arrow { font-size: 19px; padding: 0; }
-  .result-description { font-size: 11px; }
   .result-block { margin-top: 24px; padding: 23px 18px; border-radius: 10px; }
   .result-heading { gap: 10px; margin-bottom: 12px; }
   .result-heading h3 { font-size: 20px; }
@@ -190,14 +189,4 @@ code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace; }
   .takeaway { font-size: 12px; padding: 14px 16px; }
   .table-note, .experiment-note { font-size: 10px; }
   .citation-section { padding-bottom: 40px; }
-}
-
-@media (max-width: 420px) {
-  .results { grid-template-columns: 1fr; gap: 24px; }
-  .result + .result { border-left: 0; border-top: 1px solid var(--line); padding: 24px 0 0; }
-  .result-value { font-size: 37px; }
-  .result-value > span { font-size: 17px; }
-  .result-value > .result-arrow { font-size: 24px; }
-  .result h3 { font-size: 14px; }
-  .result-description { font-size: 12px; }
 }

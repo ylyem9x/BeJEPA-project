@@ -1,6 +1,7 @@
 // Author order and affiliations: author.md.
 // Keep the citation empty until the arXiv release.
 window.BEJEPA_CONFIG = {
+  "arxivUrl": "",
   "authors": [
     {
       "name": "Liyun Yan",

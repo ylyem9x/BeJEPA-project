@@ -43,6 +43,19 @@ if (config.affiliations) {
 // Leave the citation empty until the arXiv release is ready.
 if (config.citation) document.querySelector('#bibtex').textContent = config.citation;
 
+// Activate the paper button only when the actual preprint URL is supplied.
+const arxivUrl = webUrl(config.arxivUrl);
+if (arxivUrl) {
+  const link = document.querySelector('#arxiv-link');
+  link.href = arxivUrl;
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.removeAttribute('aria-disabled');
+  link.removeAttribute('role');
+  link.title = 'Read the paper on arXiv';
+  document.querySelector('#arxiv-status').hidden = true;
+}
+
 const video = document.querySelector('#project-video');
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) video.pause();

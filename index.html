@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://ylyem9x.github.io/BeJEPA-project/assets/social-preview.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://ylyem9x.github.io/BeJEPA-project/">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon-rl2.svg">
   <link rel="stylesheet" href="styles.css">
   <script src="site.config.js" defer></script>
   <script src="script.js" defer></script>
@@ -51,7 +51,8 @@
       </div>
       <p class="author-note">† Corresponding author</p>
       <div class="project-links">
-        <span class="coming-soon" aria-label="Code coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg> Code <span>Coming soon</span></span>
+        <span class="project-link" aria-label="Code release before mid-November"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg> Code <span>Before mid-November</span></span>
+        <a class="project-link" id="arxiv-link" role="link" aria-disabled="true" title="The arXiv link will be added after release."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Zm0 0v5h5M8 12h8M8 16h6"/></svg> arXiv <span id="arxiv-status">Link forthcoming</span></a>
       </div>
     </header>
 
@@ -79,24 +80,51 @@
       <figure class="architecture">
         <a href="assets/architecture.webp" target="_blank" rel="noopener" aria-label="View the BeJEPA architecture at full size"><img src="assets/architecture.webp" width="2201" height="738" loading="lazy" alt="The shared encoder, actor, Dynamic Predictor, and Successor Predictor, with transition and behavioral learning objectives."></a>
       </figure>
-      <p class="prose"><strong>One physical prediction, one behavioral summary.</strong> Dynamic predicts the next state embedding under an action; Successor predicts discounted future embeddings under a goal-conditioned policy. Both train the shared encoder, and their composition trains the actor to choose actions by their long-term goal alignment. At inference, the same Dynamic Predictor supports model-predictive action refinement for more precise spatial and temporal tracking.</p>
+      <div class="method-explainer">
+        <h3>A goal in the shared latent space</h3>
+        <p>The shared encoder maps the current state and target to embeddings <math><msub><mi>z</mi><mi>t</mi></msub></math> and <math><msub><mi>z</mi><mi>g</mi></msub></math>, capturing posture, world position, and heading. Normalizing them to radius <math><msqrt><mi>d</mi></msqrt></math> makes similarity reward equivalent to proximity to the goal:</p>
+        <div class="equation" role="region" aria-label="Goal reward equation" tabindex="0">
+          <math display="block"><mrow>
+            <msub><mi>r</mi><mi>g</mi></msub><mo stretchy="false">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>=</mo>
+            <mo stretchy="false">⟨</mo><msub><mi>z</mi><mi>t</mi></msub><mo>,</mo><msub><mi>z</mi><mi>g</mi></msub><mo stretchy="false">⟩</mo><mo>=</mo>
+            <mi>d</mi><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msubsup><mrow><mo stretchy="false">‖</mo><msub><mi>z</mi><mi>t</mi></msub><mo>−</mo><msub><mi>z</mi><mi>g</mi></msub><mo stretchy="false">‖</mo></mrow><mn>2</mn><mn>2</mn></msubsup>
+          </mrow></math>
+        </div>
+
+        <h3>One physical step, one long-term summary</h3>
+        <p><strong>Dynamic</strong> predicts an action's next latent state, independently of the goal. <strong>Successor</strong> summarizes future embeddings under the goal-conditioned policy, with discount factor <math><mi>γ</mi></math>:</p>
+        <div class="equation" role="region" aria-label="Dynamic prediction equation" tabindex="0">
+          <math display="block"><mrow>
+            <msub><mover><mi>z</mi><mo>^</mo></mover><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo>
+            <msub><mi>D</mi><mi>ν</mi></msub><mo stretchy="false">(</mo><msub><mi>z</mi><mi>t</mi></msub><mo>,</mo><msub><mi>a</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>≈</mo>
+            <msub><mi>E</mi><mi>φ</mi></msub><mo stretchy="false">(</mo><msub><mi>s</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo>
+          </mrow></math>
+        </div>
+        <div class="equation" role="region" aria-label="Successor prediction equation" tabindex="0">
+          <math display="block"><mrow>
+            <msub><mi>S</mi><mi>ξ</mi></msub><mo stretchy="false">(</mo><msub><mi>z</mi><mi>t</mi></msub><mo>,</mo><msub><mi>z</mi><mi>g</mi></msub><mo stretchy="false">)</mo><mo>≈</mo>
+            <mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>γ</mi><mo stretchy="false">)</mo><msub><mi mathvariant="normal">𝔼</mi><msub><mi>π</mi><mi>g</mi></msub></msub><mo>[</mo>
+            <munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mo>∞</mo></munderover><msup><mi>γ</mi><mi>k</mi></msup><msub><mi>z</mi><mrow><mi>t</mi><mo>+</mo><mi>k</mi></mrow></msub><mo stretchy="false">|</mo><msub><mi>s</mi><mi>t</mi></msub><mo>]</mo>
+          </mrow></math>
+        </div>
+        <p>Both train the shared encoder from robot transitions: Dynamic uses observed next states, while Successor uses a vector Bellman target to learn long-term continuation without long imagined rollouts.</p>
+
+        <h3>Compose the predictions to choose actions</h3>
+        <p>Combining Dynamic's predicted next state with Successor yields a goal-aligned action value. Gradients through both predictors guide the actor toward useful long-term behavior:</p>
+        <div class="equation" role="region" aria-label="Composed goal-conditioned action value equation" tabindex="0">
+          <math display="block"><mrow>
+            <msub><mover><mi>Q</mi><mo>^</mo></mover><mi>g</mi></msub><mo stretchy="false">(</mo><msub><mi>z</mi><mi>t</mi></msub><mo>,</mo><msub><mi>a</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>=</mo>
+            <mo stretchy="false">⟨</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>γ</mi><mo stretchy="false">)</mo><msub><mi>z</mi><mi>t</mi></msub><mo>+</mo>
+            <mi>γ</mi><msub><mi>S</mi><mi>ξ</mi></msub><mo stretchy="false">(</mo><msub><mover><mi>z</mi><mo>^</mo></mover><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>z</mi><mi>g</mi></msub><mo stretchy="false">)</mo><mo>,</mo><msub><mi>z</mi><mi>g</mi></msub><mo stretchy="false">⟩</mo>
+          </mrow></math>
+        </div>
+        <p>A fixed goal enables reaching; successive goals enable tracking. At deployment, an observation-history encoder supplies the state representation, and Dynamic supports short-horizon MPC refinement with frozen network weights.</p>
+      </div>
     </section>
 
     <section class="content-section results-section" id="results" aria-labelledby="results-heading">
       <h2 id="results-heading">Key results</h2>
       <p class="section-intro">Coordinating whole-body posture, world placement, and execution timing.</p>
-      <div class="results">
-        <article class="result">
-          <h3>Global body-position error</h3>
-          <p class="result-value">219.5 <span>mm</span></p>
-          <p class="result-description">Global MPJPE on AMASS.<br><strong>61.7% lower</strong> than BFM-Zero (world)<br>and <strong>58.7% lower</strong> than SONIC.</p>
-        </article>
-        <article class="result">
-          <h3>Temporal alignment</h3>
-          <p class="result-value">94.8 <span class="result-arrow">→</span> 21.2 <span>ms</span></p>
-          <p class="result-description">Mean signed joint-tracking lag on AMASS.<br>BeJEPA → BeJEPA-MPC (Balanced),<br>using the same pretrained weights.</p>
-        </article>
-      </div>
       <article class="result-block" aria-labelledby="tracking-heading">
         <div class="result-heading"><span class="result-number" aria-hidden="true">01</span><h3 id="tracking-heading">Whole-body motion tracking</h3></div>
         <p class="result-copy">BeJEPA-MPC (Balanced) achieves the lowest global body-position and root errors among the compared methods on both datasets. Local posture and wrist errors are reported alongside them to show the trade-offs in world-coordinate tracking.</p>
