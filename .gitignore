@@ -17,3 +17,7 @@ humanoidverse/data/*.tmp
 *.safetensors
 *.mp4
 .env
+.env.*
+!.env.example
+.netrc
+.DS_Store
