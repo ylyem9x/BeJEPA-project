@@ -1,7 +1,6 @@
 // Author order and affiliations: author.md.
-// Keep the citation empty until the arXiv release.
 window.BEJEPA_CONFIG = {
-  "arxivUrl": "",
+  "arxivUrl": "https://arxiv.org/abs/2610.23127",
   "authors": [
     {
       "name": "Liyun Yan",
@@ -151,5 +150,6 @@ window.BEJEPA_CONFIG = {
       "name": "Robotics Lab, Lenovo Research, Lenovo Group Limited"
     }
   ],
-  "citation": ""
+  "citation": "@misc{yan2026bejepa,\n  title         = {{BeJEPA}: A Goal-Conditioned Humanoid Behavior World Model via Unsupervised RL},\n  author        = {Liyun Yan and Haoyang Li and Yang Zhang and Jialing Zhu and Zhanxiang Cao and Zihao Zhou and Keqi Zhu and Yizhi Chen and Huang Chuxuan and Shengcheng Fu and Zhong Jiangwei and Qiao Sun and Chen Zhang and Yue Gao},\n  year          = {2026},\n  eprint        = {2610.23127},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.RO},\n  doi           = {10.48550/arXiv.2610.23127},\n  url           = {https://arxiv.org/abs/2610.23127}\n}",
+  "codeUrl": "https://github.com/ylyem9x/BeJEPA-project"
 };

@@ -40,20 +40,12 @@ if (config.affiliations) {
   document.querySelector('#affiliations').replaceChildren(...affiliations);
 }
 
-// Leave the citation empty until the arXiv release is ready.
+// Keep the static HTML links and citation in sync with the project configuration.
 if (config.citation) document.querySelector('#bibtex').textContent = config.citation;
 
-// Activate the paper button only when the actual preprint URL is supplied.
-const arxivUrl = webUrl(config.arxivUrl);
-if (arxivUrl) {
-  const link = document.querySelector('#arxiv-link');
-  link.href = arxivUrl;
-  link.target = '_blank';
-  link.rel = 'noopener';
-  link.removeAttribute('aria-disabled');
-  link.removeAttribute('role');
-  link.title = 'Read the paper on arXiv';
-  document.querySelector('#arxiv-status').hidden = true;
+for (const [selector, value] of [['#arxiv-link', config.arxivUrl], ['#code-link', config.codeUrl]]) {
+  const url = webUrl(value);
+  if (url) document.querySelector(selector).href = url;
 }
 
 const video = document.querySelector('#project-video');

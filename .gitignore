@@ -3,7 +3,7 @@ node_modules/
 __pycache__/
 .env
 .env.*
-# Research materials must not be added to this website repository.
+# Research materials must not be added to this website branch.
 code/
 downloads/
 *.pdf

@@ -1,25 +1,25 @@
 # BeJEPA project website
 
-https://ylyem9x.github.io/BeJEPA-project/
+[Project Page](https://ylyem9x.github.io/BeJEPA-project/) | [Paper](https://arxiv.org/abs/2610.23127) | [Code](https://github.com/ylyem9x/BeJEPA-project)
 
 A black-and-white academic project page for **BeJEPA: A Goal-Conditioned Humanoid Behavior World Model via Unsupervised RL**, with detailed tracking comparisons and experimental figures.
 
-This repository contains only the website and the media used by the page. Research implementation, code archives, datasets, model weights, and manuscript PDFs are not included. Code is marked **Before mid-November**. The arXiv button awaits a link, and the citation is intentionally empty until the arXiv release.
+The `gh-page` branch contains the website and its media. The `main` branch contains the BeJEPA research code and bundled motion data. The website links to the public code repository and arXiv paper, and includes the paper’s BibTeX citation.
 
 ## Editing
 
 - `index.html`: lab identity, title, static author fallback, abstract, figures, a four-equation method explanation, and three results sections with benchmark tables and figures.
 - `styles.css`: responsive monochrome layout.
-- `site.config.js`: author links, affiliations, corresponding-author flags, the future arXiv URL, and citation.
-- `script.js`: author rendering, arXiv button activation, and video visibility handling.
+- `site.config.js`: author links, affiliations, corresponding-author flags, the paper and code URLs, and citation.
+- `script.js`: author rendering, paper and code links, and video visibility handling.
 - `author.md`: author order and institution-order requirements supplied by the project owner.
 - `assets/`: the supplied RL² Lab logo, full project video, WebM fallback, captions, four paper figures, posters, favicon, and a locally hosted font.
 
 Author order and affiliation assignments follow `author.md`; Yue Gao is marked as corresponding author. Institution order is RL² Lab at Shanghai Jiao Tong University, SII, Zhejiang University, Tongji University, Fudan University, and Lenovo last. The owner confirmed that `tju` means Tongji University, and requested the RL² Lab attribution within the SJTU affiliation. When updating authors, keep the static fallback in `index.html` consistent with `site.config.js`.
 
-Set `arxivUrl` in `site.config.js` to the actual preprint URL to activate the arXiv button, and set `citation` to the final BibTeX after the preprint is released. Until then, the button has no destination and the citation remains empty.
+Keep `arxivUrl`, `codeUrl`, and `citation` in `site.config.js` consistent with the static links and BibTeX in `index.html`, so they remain available when JavaScript is disabled.
 
-GitHub Pages serves the root of `main`. There is no build step and no external JavaScript or font CDN dependency. A local static HTTP server can preview the page; byte-range support is needed to seek through videos.
+GitHub Pages serves the root of `gh-page`, preserving https://ylyem9x.github.io/BeJEPA-project/. There is no build step and no external JavaScript or font CDN dependency. A local static HTTP server can preview the page; byte-range support is needed to seek through videos.
 
 ## Media and results
 
@@ -32,3 +32,18 @@ The method explanation follows the paper's goal-reward, Dynamic prediction, Succ
 The bundled Inter font retains its SIL Open Font License at `assets/fonts/OFL.txt`. KaTeX retains its MIT license at `assets/katex/LICENSE`; its CSS is configured to use the bundled WOFF2 fonts. Research media retain their original rights.
 
 The academic layout references [Demo-JEPA](https://log2r.github.io/Demo-JEPA/), with expanded tables, explanatory text, and figures, following earlier references to [Diffusion Policy](https://diffusion-policy.cs.columbia.edu/) and [UMI on Legs](https://umi-on-legs.github.io/). No third-party template code or research assets were copied.
+
+## Citation
+
+```bibtex
+@misc{yan2026bejepa,
+  title         = {{BeJEPA}: A Goal-Conditioned Humanoid Behavior World Model via Unsupervised RL},
+  author        = {Liyun Yan and Haoyang Li and Yang Zhang and Jialing Zhu and Zhanxiang Cao and Zihao Zhou and Keqi Zhu and Yizhi Chen and Huang Chuxuan and Shengcheng Fu and Zhong Jiangwei and Qiao Sun and Chen Zhang and Yue Gao},
+  year          = {2026},
+  eprint        = {2610.23127},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  doi           = {10.48550/arXiv.2610.23127},
+  url           = {https://arxiv.org/abs/2610.23127}
+}
+```
