@@ -21,7 +21,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 Clone the repository and install the environment:
 
 ```bash
-git clone https://github.com/ylyem9x/BeJEPA.git
+git clone https://github.com/ylyem9x/BeJEPA-project.git BeJEPA
 cd BeJEPA
 bash setup.sh
 ```
